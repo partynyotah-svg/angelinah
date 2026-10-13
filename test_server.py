@@ -7,9 +7,10 @@ from http.server import ThreadingHTTPServer
 from io import BytesIO
 from threading import Thread
 from typing import Any
+from unittest.mock import patch
 from zipfile import ZIP_DEFLATED, ZipFile
 
-from server import Handler, analyze_payload, parse_xlsx_bytes
+from server import MAX_XLSX_BYTES, Handler, analyze_payload, parse_xlsx_bytes
 
 
 def payload(
@@ -48,6 +49,9 @@ def sample_xlsx() -> bytes:
 
 
 class ExcelParserTests(unittest.TestCase):
+    def test_xlsx_upload_limit_is_80_mb(self) -> None:
+        self.assertEqual(MAX_XLSX_BYTES, 80_000_000)
+
     def test_reads_first_sheet_cells(self) -> None:
         self.assertEqual(
             parse_xlsx_bytes(sample_xlsx()),
@@ -309,6 +313,19 @@ class LocalHTTPTests(unittest.TestCase):
 
         self.assertEqual(status, 200)
         self.assertEqual(json.loads(body), {"matrix": [["Department", "Attrition"], ["Sales", "No"], ["Sales", "No"], ["Sales", "Yes"], ["Sales", "No"], ["Sales", "Yes"], ["Tiny", "Yes"]]})
+
+    def test_xlsx_conversion_endpoint_rejects_files_over_the_limit(self) -> None:
+        workbook = sample_xlsx()
+        with patch("server.MAX_XLSX_BYTES", len(workbook) - 1):
+            status, _, body = self.request(
+                "POST",
+                "/api/parse-xlsx",
+                workbook,
+                content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+
+        self.assertEqual(status, 413)
+        self.assertEqual(json.loads(body), {"error": "Excel files must be 80 MB or smaller."})
 
 
 if __name__ == "__main__":

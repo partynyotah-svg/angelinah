@@ -16,7 +16,7 @@ from xml.etree import ElementTree as ET
 HOST = "127.0.0.1"
 PORT = 8770
 MIN_GROUP_SIZE = 5
-MAX_BODY_BYTES = 20_000_000
+MAX_BODY_BYTES = 500_000_000
 MAX_XLSX_BYTES = 80_000_000
 MAX_XLSX_UNCOMPRESSED_BYTES = 50_000_000
 MAX_ROWS = 100_000
@@ -45,7 +45,7 @@ def wilson_interval(successes: int, total: int) -> list[float]:
 
 def parse_xlsx_bytes(data: bytes) -> list[list[str]]:
     if len(data) > MAX_XLSX_BYTES:
-        raise ValueError("Excel files must be 8 MB or smaller.")
+        raise ValueError("Excel files must be 80 MB or smaller.")
     try:
         with ZipFile(BytesIO(data)) as workbook:
             entries = workbook.infolist()
@@ -407,7 +407,7 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 size = int(self.headers.get("Content-Length", "0"))
                 if size <= 0 or size > MAX_XLSX_BYTES:
-                    self.send_json(413, {"error": "Excel files must be 8 MB or smaller."})
+                    self.send_json(413, {"error": "Excel files must be 80 MB or smaller."})
                     return
                 self.send_json(200, {"matrix": parse_xlsx_bytes(self.rfile.read(size))})
             except ValueError as error:
@@ -423,7 +423,7 @@ class Handler(BaseHTTPRequestHandler):
                 return
             size = int(self.headers.get("Content-Length", "0"))
             if size <= 0 or size > MAX_BODY_BYTES:
-                self.send_json(413, {"error": "Request must be under 20 MB."})
+                self.send_json(413, {"error": "Analysis request must be 500 MB or smaller."})
                 return
             payload = json.loads(self.rfile.read(size))
             if not isinstance(payload, dict):
