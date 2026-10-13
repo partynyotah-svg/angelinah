@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c43">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:;">
+  <title>AttritionIQ | Workforce retention</title>
+  <style>
+    :root{color-scheme:light;--paper:#f3f6fc;--surface:#fff;--ink:#14213e;--muted:#65728b;--line:#e2e9f3;--forest:#101c43;--green:#10a779;--green-soft:#e2f7ee;--coral:#e9533f;--coral-soft:#ffede9;--gold:#a26c17;--gold-soft:#f7efd9;--blue:#2368f6;--shadow:0 7px 24px #172b4d0b}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 "Segoe UI",Tahoma,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #da865d;outline-offset:2px}
+    #layout{min-height:100vh;display:grid;grid-template-columns:224px minmax(0,1fr)}aside{background:var(--forest);color:#ecf2ee;padding:24px 16px;display:flex;flex-direction:column;min-height:100vh}.brand{display:flex;align-items:center;gap:11px;padding:0 7px 25px}.brand-mark{width:37px;height:37px;border:1px solid #ffffff40;border-radius:10px;display:grid;place-items:center;color:#f1c276;font:700 21px Georgia,serif}.brand strong{font:700 19px Georgia,serif;letter-spacing:0}.brand small{display:block;color:#b6c4bd;font-size:11px;margin-top:1px}.nav-label{padding:8px 10px;color:#91a39a;text-transform:uppercase;letter-spacing:.1em;font-size:10px;font-weight:700}.nav button{width:100%;border:0;border-radius:6px;background:transparent;color:#cbd6d0;text-align:left;padding:10px 11px;margin:2px 0;display:flex;align-items:center;gap:11px}.nav button:hover{background:#ffffff12;color:#fff}.nav button.active{background:#ffffff1b;color:#fff;box-shadow:inset 3px 0 #efb765}.nav .ico{width:18px;text-align:center;font-size:15px}.side-note{margin-top:auto;border-top:1px solid #ffffff21;padding:17px 8px 0;color:#b6c4bd;font-size:11px}.side-note b{display:block;color:#fff;font-size:12px;margin-bottom:4px}
+    main{min-width:0;padding:0 38px 28px;max-width:1500px;width:100%;margin:0 auto}.topbar{height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.crumb{font-size:12px;color:var(--muted)}.crumb b{color:var(--ink);font-weight:600}.local{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px}.local i{width:8px;height:8px;border-radius:50%;background:var(--green);display:block}.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin:27px 0 18px}.page-head h1{font:500 34px/1.15 Georgia,"Times New Roman",serif;margin:0;letter-spacing:0}.page-head p{color:var(--muted);margin:7px 0 0}.head-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:8px 12px;font-size:12px;font-weight:600}.btn:hover{border-color:#98a89f;background:#fafffb}.btn.primary{background:var(--forest);border-color:var(--forest);color:#fff}.btn.primary:hover{background:#2c4940}.btn:disabled{opacity:.55;cursor:wait}.notice{display:flex;gap:12px;align-items:flex-start;background:#fff9e9;border:1px solid #ecdcae;border-left:4px solid var(--gold);padding:12px 15px;margin-bottom:20px;color:#4b4638;font-size:12px}.notice b{display:block;color:#302e28;margin-bottom:2px}.notice .notice-icon{font-size:16px;color:var(--gold)}
+    .view[hidden], [hidden]{display:none!important}.empty{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:48px 28px;text-align:center;box-shadow:var(--shadow)}.empty-mark{width:50px;height:50px;margin:0 auto 12px;border-radius:15px;background:var(--green-soft);display:grid;place-items:center;color:var(--green);font-size:23px}.empty h2{font:500 25px Georgia,serif;margin:0}.empty p{color:var(--muted);max-width:500px;margin:9px auto 19px}.empty-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:7px;margin:18px 0 22px}.metric{padding:17px 20px;min-width:0}.metric+.metric{border-left:1px solid var(--line)}.metric label{font-size:11px;color:var(--muted);display:block}.metric strong{display:block;font:500 28px/1.25 Georgia,serif;margin:5px 0 2px}.metric small{color:var(--muted);font-size:10px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 11px;border-bottom:1px solid var(--line);margin-bottom:0}.section-head h2,.section-head h3{margin:0;font-size:14px}.section-head span{font-size:11px;color:var(--muted)}.breakdown{background:var(--surface);border:1px solid var(--line);border-radius:7px;box-shadow:var(--shadow);margin-bottom:18px}.breakdown-head{padding:15px 17px 0}.group-control{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}select,.text-input{border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink);padding:7px 9px;max-width:220px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}th{background:#f7f8f6;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.04em;font-weight:700}th,td{padding:11px 16px;border-bottom:1px solid #e9eeea;white-space:nowrap}tbody tr:last-child td{border-bottom:0}.rate-cell{display:flex;align-items:center;gap:10px;min-width:155px}.bar{height:7px;min-width:54px;flex:1;background:#edf0ed;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--coral);border-radius:8px}.rate{font-weight:700;font-variant-numeric:tabular-nums}.table-foot{padding:11px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.lower{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;margin:0 0 20px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:16px 17px;min-width:0}.panel h3{font-size:13px;margin:0 0 11px}.panel p{font-size:12px;color:var(--muted);margin:0}.quality-list{list-style:none;margin:0;padding:0}.quality-list li{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px solid #edf0ed;font-size:11px}.quality-list li:last-child{border-bottom:0}.quality-list span{color:var(--muted)}.quality-list b{font-variant-numeric:tabular-nums}.planning{border-left:3px solid var(--green);padding:2px 0 2px 12px;margin:0 0 12px}.planning:last-child{margin-bottom:0}.planning b{font-size:12px;display:block;margin-bottom:3px}.planning p{font-size:11px;line-height:1.55}.footnote{font-size:10px;color:var(--muted);padding:5px 0 14px}
+    .data-panel{max-width:900px}.data-panel h2{font:700 22px "Segoe UI",sans-serif;margin:0 0 5px}.data-panel>p{color:var(--muted);font-size:12px;margin:0 0 19px}.drop{position:relative;display:flex;min-height:178px;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:2px dashed #b7c8e8;border-radius:9px;background:linear-gradient(145deg,#f4f8ff,#fbfdff);padding:20px;text-align:center;cursor:pointer;transition:border-color .18s,background .18s,transform .18s}.drop:hover,.drop.drag,.drop:focus-within{border-color:var(--blue);background:#f1f6ff}.drop:active{transform:scale(.998)}.drop strong{display:block;font-size:14px;color:var(--ink)}.drop p{margin:0 0 5px;color:var(--muted);font-size:11px}.drop-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#e4edff;color:var(--blue);font-size:20px;margin-bottom:3px}.file-cta{display:inline-flex;align-items:center;justify-content:center;min-width:132px;border-radius:6px;background:var(--blue);color:#fff;padding:8px 15px;font-size:11px;font-weight:700;box-shadow:0 3px 8px #2368f628}.file-name{font-size:10px;color:var(--muted)}.drop input[type=file]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}.paste-panel{margin-top:16px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow)}.paste-panel label{font-size:12px;margin-bottom:8px}.paste-input{display:block;width:100%;min-height:112px;border:1px solid var(--line);border-radius:6px;background:#fbfcff;padding:11px;color:var(--ink);font:12px/1.5 "Cascadia Code",Consolas,monospace;resize:vertical}.paste-input:focus{outline:2px solid #2368f64d;border-color:var(--blue)}.paste-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:9px}.paste-actions small{color:var(--muted);font-size:10px}.prep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}.field label{display:block;font-weight:600;font-size:11px;margin-bottom:6px}.field select{width:100%;max-width:none}.field small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.data-actions{display:flex;align-items:center;gap:12px;margin-top:17px}.status{color:var(--muted);font-size:11px}.sample-label{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:10px;margin-top:12px}.sample-label i{width:7px;height:7px;background:var(--gold);border-radius:50%}.toast{position:fixed;right:20px;bottom:18px;max-width:min(440px,calc(100vw - 40px));padding:12px 15px;border-radius:6px;background:var(--forest);color:#fff;box-shadow:var(--shadow);font-size:12px;z-index:5}.toast.error{background:#8f3428}.privacy-footer{border-top:1px solid var(--line);margin-top:24px;padding-top:12px;display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:10px}
+    /* Reference-inspired, aggregate-first dashboard */
+    aside{background:linear-gradient(180deg,#101c43 0%,#0b1536 100%);border-right:1px solid #ffffff10}
+    .brand-mark{background:#2368f6;border:0;color:#fff;border-radius:11px;font:bold 20px "Segoe UI",sans-serif}
+    .brand strong{font:700 17px "Segoe UI",sans-serif}
+    .brand small{font-size:10px;color:#aab8d5}
+    .nav button{font-size:12px;border-radius:7px}
+    .nav button.active{background:#2368f6;box-shadow:none;color:#fff}
+    .side-note{background:#ffffff0a;border:1px solid #ffffff16;border-radius:8px;padding:14px 12px;color:#b8c5df}
+    main{padding-left:28px;padding-right:28px}
+    .topbar{height:56px}
+    .page-head{margin:18px 0 12px;align-items:center}
+    .page-head h1{font:700 27px/1.15 "Segoe UI",Tahoma,sans-serif}
+    .page-head p{font-size:12px;margin-top:4px}
+    .btn.primary{background:var(--blue);border-color:var(--blue)}
+    .notice{background:#f2f6ff;border-color:#d6e3ff;border-left-color:var(--blue);padding:9px 13px;margin-bottom:14px;color:#3d4b67;font-size:11px}
+    .notice b{color:#14213e}
+    .metrics{grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;background:transparent;border:0;margin:13px 0 12px;overflow:visible}
+    .metric{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 12px 11px;box-shadow:var(--shadow)}
+    .metric+.metric{border-left:1px solid var(--line)}
+    .metric label{font-weight:600;font-size:10px}
+    .metric strong{font:700 23px/1.2 "Segoe UI",sans-serif;margin:5px 0 2px}
+    .metric small{font-size:9px}
+    .breakdown{box-shadow:none;margin-bottom:12px}
+    .breakdown-head{padding:12px 14px 0}
+    .panel,.breakdown{border-radius:7px}
+    .lower{gap:12px;margin-bottom:12px}
+    .panel{box-shadow:var(--shadow)}
+    .group-control select{font-size:11px;padding:6px 8px}
+    .analytics-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 12px}
+    .viz-panel{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:13px 14px;min-width:0;box-shadow:var(--shadow)}
+    .viz-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+    .viz-head h3{font-size:12px;margin:0}
+    .viz-head small{color:var(--muted);font-size:9px}
+    .rank-bars{display:grid;gap:8px}
+    .rank-row{display:grid;grid-template-columns:minmax(70px,1fr) 2fr 40px;gap:8px;align-items:center;font-size:10px}
+    .rank-row span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .rank-track{height:8px;border-radius:8px;background:#edf1f8;overflow:hidden}
+    .rank-track i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#2368f6,#35b8d2)}
+    .rank-row b{text-align:right;font-variant-numeric:tabular-nums}
+    .trend-chart{height:92px;display:grid;grid-template-columns:repeat(auto-fit,minmax(24px,1fr));align-items:end;gap:5px}
+    .trend-col{display:grid;grid-template-rows:13px 1fr 14px;gap:3px;min-width:0;text-align:center;font-size:8px;color:var(--muted)}
+    .trend-col b{font-size:8px;color:var(--ink);font-weight:600}
+    .trend-track{height:56px;display:flex;align-items:flex-end;justify-content:center;background:linear-gradient(to top,#f1f4fa 1px,transparent 1px);background-size:100% 25%;border-bottom:1px solid var(--line)}
+    .trend-track i{display:block;width:min(18px,70%);min-height:3px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#18b6cf,#2368f6)}
+    .mix-list{display:grid;gap:9px}
+    .mix-row{display:grid;grid-template-columns:minmax(70px,1fr) auto;gap:3px 8px;align-items:center;font-size:10px}
+    .mix-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .mix-row b{font-size:10px;font-variant-numeric:tabular-nums}
+    .mix-track{grid-column:1/-1;height:5px;border-radius:8px;background:#edf1f8;overflow:hidden}
+    .mix-track i{display:block;height:100%;border-radius:8px;background:#16b78a}
+    .insight-list{display:grid;gap:0}
+    .insight{display:grid;grid-template-columns:4px 1fr;gap:9px;padding:8px 0;border-bottom:1px solid #edf0f6;font-size:10px;line-height:1.45}
+    .insight:last-child{border:0}
+    .insight i{border-radius:4px;background:var(--blue)}
+    .insight:nth-child(2) i{background:#11af84}.insight:nth-child(3) i{background:#ee9c2e}
+    .viz-panel .muted{color:var(--muted);font-size:10px}
+    .empty{padding:22px 24px;background:linear-gradient(110deg,#e8efff 0%,#f8faff 48%,#fff 100%);border-color:#dbe5fb;text-align:left;box-shadow:none}
+    .empty-intro{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}
+    .empty h2{font:700 18px "Segoe UI",sans-serif}
+    .empty p{font-size:11px;margin:3px 0 0;max-width:450px}
+    .empty-mark{width:38px;height:38px;margin:0;background:#dce9ff;color:var(--blue);border-radius:10px;flex:none}
+    .empty-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .launch-card{display:flex;align-items:center;gap:10px;text-align:left;min-width:0;background:#fff;border:1px solid #e3e9f4;border-radius:7px;padding:11px;color:var(--ink)}
+    .launch-card:hover{border-color:#98b8ff;box-shadow:0 4px 14px #2368f618}
+    .launch-card .launch-icon{width:33px;height:33px;display:grid;place-items:center;flex:none;background:#e8f0ff;color:var(--blue);border-radius:9px;font-size:16px}
+    .launch-card:nth-child(2) .launch-icon{background:#e4fbf0;color:#0b9c6c}.launch-card:nth-child(3) .launch-icon{background:#f2eaff;color:#8849dd}
+    .launch-card b{display:block;font-size:11px}.launch-card small{display:block;color:var(--muted);font-size:9px;font-weight:400;margin-top:2px}
+    .sample-label{font-size:9px}
+    .editor-pagination{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:9px 0 0}.editor-pagination span{min-width:80px;text-align:center;color:var(--muted);font-size:10px}.editor-pagination .btn{padding:5px 9px;font-size:10px}
+    .view-shell{min-width:0}.view-title{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:6px 0 16px}.view-title h2{font:700 22px "Segoe UI",sans-serif;margin:0}.view-title p{font-size:11px;color:var(--muted);margin:4px 0 0}.editor-panel{margin-top:25px}.editor-panel .section-head{align-items:center;margin-bottom:10px}.editor-actions{display:flex;gap:6px;align-items:center}.editor-actions .text-input{width:145px;padding:6px 8px;font-size:11px}.editor-wrap{max-height:340px;border:1px solid var(--line);border-radius:6px;margin-top:9px}.editor-wrap table{min-width:720px}.editor-wrap input{width:100%;min-width:100px;border:0;background:transparent;padding:7px 8px;color:var(--ink);font-size:11px}.editor-wrap input:focus{outline:2px solid var(--blue);outline-offset:-2px}.editor-wrap th{position:sticky;top:0;z-index:1}.editor-panel>.muted{font-size:10px;margin:0}.explore-controls{display:grid;grid-template-columns:minmax(180px,1fr) minmax(160px,.8fr) auto 1fr;gap:12px;align-items:end;margin-bottom:14px}.explore-controls .field select{max-width:none;width:100%}.explore-controls .status{padding-bottom:8px}.compact-metrics{grid-template-columns:repeat(3,minmax(0,1fr));background:transparent;border:0;margin:0 0 14px}.compact-metrics .metric{padding:11px 14px}.compact-metrics .metric strong{font-size:20px}.planner-grid{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);gap:13px}.planner-inputs{display:grid;gap:12px;align-content:start}.planner-inputs h3{margin:0}.planner-inputs .field .text-input{max-width:none;width:100%}.planner-inputs .field small{color:var(--muted);font-size:10px}.planner-inputs .muted{font-size:10px}.scenario-result{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.scenario-result .metric{border:1px solid var(--line);border-radius:6px;padding:11px}.scenario-result .metric strong{font-size:20px}.scenario-result .metric small{font-size:9px}.planner-note{margin-top:13px}.report-sheet{background:#fff;border:1px solid var(--line);border-radius:7px;padding:24px;max-width:900px;box-shadow:var(--shadow)}.report-sheet h3{font:700 14px "Segoe UI",sans-serif;margin:20px 0 8px}.report-sheet h3:first-child{margin-top:0}.report-sheet p,.report-sheet li{font-size:11px;color:#46536a;line-height:1.65}.report-sheet ul{padding-left:18px}.report-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:15px 0}.export-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.export-options .panel{display:grid;align-content:start;gap:8px}.export-options .panel p{margin:0 0 5px}.settings-list{background:#fff;border:1px solid var(--line);border-radius:7px;max-width:850px}.settings-list div{display:flex;justify-content:space-between;gap:16px;padding:13px 15px;border-bottom:1px solid var(--line);font-size:11px}.settings-list div:last-child{border:0}.settings-list span{color:var(--muted)}.settings-list b{text-align:right}.settings-clear{max-width:850px;margin-top:14px}.settings-clear h3{margin-top:0}.settings-clear p{margin-bottom:10px}.help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px}.help-grid .panel h3{margin:0 0 7px}.help-grid .panel p{font-size:11px;line-height:1.65}.muted{color:var(--muted);font-size:11px}
+    @media(max-width:1050px){.analytics-grid{grid-template-columns:1fr 1fr}.analytics-grid .viz-panel:last-child{grid-column:1/-1}}
+    @media(max-width:900px){#layout{grid-template-columns:minmax(0,1fr)}aside{min-height:0;padding:10px 14px;flex-direction:row;align-items:center;gap:16px}.brand{padding:0;flex:none}.brand small,.nav-label,.side-note{display:none}.nav{display:flex;flex:1;min-width:0;gap:4px;overflow:auto}.nav button{width:auto;white-space:nowrap;margin:0;padding:8px 10px}.nav button.active{box-shadow:inset 0 -2px #efb765}.nav .ico{display:none}main{padding:0 20px 24px}.topbar{height:52px}.page-head{margin-top:22px}}
+    @media(max-width:900px){.explore-controls{grid-template-columns:1fr 1fr}.explore-controls .status{grid-column:1/-1}.planner-grid{grid-template-columns:1fr}}
+    @media(max-width:620px){main{padding:0 13px 20px}.page-head{align-items:flex-start;flex-direction:column;gap:12px}.page-head h1{font-size:25px}.head-actions{width:100%}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:12px}.metric:nth-child(3){border-left:1px solid var(--line);border-top:0}.metric:nth-child(4){border-top:0}.metric:nth-child(5){grid-column:1/-1}.analytics-grid{grid-template-columns:1fr}.analytics-grid .viz-panel:last-child{grid-column:auto}.empty{padding:17px 15px}.empty-intro{align-items:flex-start}.empty-actions{grid-template-columns:1fr}.launch-card{padding:9px}.lower{grid-template-columns:1fr}.prep{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.editor-actions{flex-wrap:wrap}.editor-actions .text-input{width:100%}.explore-controls{grid-template-columns:1fr}.explore-controls .status{grid-column:auto}.compact-metrics{grid-template-columns:1fr 1fr}.compact-metrics .metric:last-child{grid-column:1/-1}.scenario-result,.report-kpis,.export-options,.help-grid{grid-template-columns:1fr}.settings-list div{align-items:flex-start;flex-direction:column;gap:3px}.settings-list b{text-align:left}.view-title{align-items:flex-start;flex-direction:column}.privacy-footer{flex-direction:column}.local{font-size:10px}}
+    .explore-controls{grid-template-columns:repeat(3,minmax(0,1fr)) auto}.explore-controls .status{grid-column:1/-1}
+    .ci-note{display:block;color:var(--muted);font-size:9px;white-space:nowrap}.rate-cell .rate-stack{display:flex;flex-direction:column;gap:2px}
+    @media(max-width:900px){.explore-controls{grid-template-columns:1fr 1fr}.explore-controls .status{grid-column:1/-1}}
+    @media(max-width:620px){.explore-controls{grid-template-columns:1fr}.explore-controls .status{grid-column:auto}}
+  </style>
+</head>
+<body>
+  <div id="layout">
+    <aside>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">A</span><div><strong>AttritionIQ</strong><small>Workforce insights</small></div></div>
+      <div class="nav-label">Workspace</div>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="active" type="button" data-view="overview"><span class="ico" aria-hidden="true">▦</span>Dashboard</button>
+        <button type="button" data-view="data"><span class="ico" aria-hidden="true">＋</span>Data &amp; setup</button>
+        <button type="button" data-view="explore"><span class="ico" aria-hidden="true">⌕</span>Exploratory analysis</button>
+        <button type="button" data-view="planner"><span class="ico" aria-hidden="true">◷</span>Retention planner</button>
+        <button type="button" data-view="report"><span class="ico" aria-hidden="true">▧</span>Reports</button>
+        <button type="button" data-view="export"><span class="ico" aria-hidden="true">⇩</span>Export results</button>
+        <button type="button" data-view="settings"><span class="ico" aria-hidden="true">⚙</span>Settings</button>
+        <button type="button" data-view="help"><span class="ico" aria-hidden="true">?</span>Help &amp; guide</button>
+      </nav>
+      <div class="side-note"><b>Aggregate by design</b>No employee-level profiles, risk scores, or rankings are created.</div>
+    </aside>
+    <main>
+      <div class="topbar"><div class="crumb">People analytics <span aria-hidden="true">/</span> <b id="crumb">Overview</b></div><div class="local"><i aria-hidden="true"></i> Local session · not saved</div></div>
+      <header class="page-head">
+        <div><h1>Employee Attrition Analytics</h1><p>Review historical patterns and plan organization-wide retention programs.</p></div>
+        <div class="head-actions"><button class="btn" id="dataTop" type="button">＋ Load HR data</button><button class="btn" id="export" type="button" hidden>↓ Export aggregates</button></div>
+      </header>
+      <div class="notice" role="note"><span class="notice-icon" aria-hidden="true">ⓘ</span><div><b>Aggregate planning only</b>Use these group-level patterns to review policies and retention programs. This tool does not assess individuals and must not be used to make or justify decisions about any employee.</div></div>
+
+      <section class="view" id="view-overview" aria-label="Workforce overview">
+        <div class="empty" id="empty">
+          <div class="empty-intro"><div><h2>Get started with your data</h2><p>Choose how to provide workforce data and explore aggregate historical patterns.</p></div><div class="empty-mark" aria-hidden="true">↗</div></div>
+          <div class="empty-actions">
+            <button class="launch-card" id="emptyLoad" type="button"><span class="launch-icon" aria-hidden="true">⇧</span><span><b>Import file (CSV / TSV / Excel)</b><small>Browse or drop a file</small></span></button>
+            <button class="launch-card" id="manualEntry" type="button"><span class="launch-icon" aria-hidden="true">▦</span><span><b>Manual entry</b><small>Paste a table from a spreadsheet</small></span></button>
+            <button class="launch-card" id="demo" type="button"><span class="launch-icon" aria-hidden="true">▤</span><span><b>Use sample data</b><small>Explore a synthetic HR dataset</small></span></button>
+          </div>
+          <span class="sample-label"><i aria-hidden="true"></i> Example records are generated; no real employee data</span>
+        </div>
+        <div id="results" hidden>
+          <div class="metrics" aria-label="Overall workforce measures">
+            <div class="metric"><label>♙ Records analyzed</label><strong id="records">—</strong><small>Rows with a known outcome</small></div>
+            <div class="metric"><label>↗ Historical departures</label><strong id="departures">—</strong><small>Rows marked as departed</small></div>
+            <div class="metric"><label>◉ Overall attrition rate</label><strong id="rate">—</strong><small>Departures ÷ records analyzed</small></div>
+            <div class="metric"><label>✓ Data completeness</label><strong id="complete">—</strong><small id="missingHint">Across uploaded fields</small></div>
+            <div class="metric"><label>▤ Groups compared</label><strong id="groupCount">—</strong><small id="groupCountHint">Visible groups only</small></div>
+          </div>
+          <div class="analytics-grid" aria-label="Aggregate workforce visualizations">
+            <section class="viz-panel"><div class="viz-head"><h3>Attrition trend</h3><small id="trendNote">By year · aggregate</small></div><div class="trend-chart" id="trendChart"></div></section>
+            <section class="viz-panel"><div class="viz-head"><h3>Historical attrition by group</h3><small>Group rates · descriptive</small></div><div class="rank-bars" id="groupBars"></div></section>
+            <section class="viz-panel"><div class="viz-head"><h3>Visible departures mix</h3><small id="mixNote">Counts from shown groups</small></div><div class="mix-list" id="departureMix"></div></section>
+            <section class="viz-panel"><div class="viz-head"><h3>Key patterns</h3><small>Historical comparison</small></div><div class="insight-list" id="insights"></div></section>
+          </div>
+          <section class="breakdown" aria-labelledby="breakdownTitle">
+            <div class="breakdown-head"><div class="section-head"><div><h2 id="breakdownTitle">Historical attrition by group</h2><span id="datasetName"></span></div><label class="group-control" for="groupBy">Break down by <select id="groupBy" aria-label="Break down by"></select></label></div></div>
+            <div class="table-wrap"><table><thead><tr><th id="groupHeading">Group</th><th>Records</th><th>Departures</th><th>Attrition rate</th><th>95% interval</th></tr></thead><tbody id="groups"></tbody></table></div>
+            <div class="table-foot" id="suppression"></div>
+          </section>
+          <div class="lower">
+            <section class="panel" aria-labelledby="planningTitle"><h3 id="planningTitle">Planning context</h3><div id="planning"></div><p style="margin-top:12px">Patterns are descriptive, may reflect data quality or structural differences, and do not establish cause. Validate ideas with voluntary feedback and other evidence.</p></section>
+            <section class="panel" aria-labelledby="qualityTitle"><h3 id="qualityTitle">Data quality · missing values</h3><ul class="quality-list" id="quality"></ul></section>
+          </div>
+          <p class="footnote" id="analysisFoot"></p>
+        </div>
+      </section>
+
+      <section class="view data-panel" id="view-data" hidden aria-label="Load and prepare data">
+        <h2>Data &amp; setup</h2><p>Import a CSV, tab-separated file, or .xlsx workbook. Choose the historical departure outcome, then prepare your workforce records for aggregate analysis.</p>
+        <label class="drop" id="drop"><span class="drop-icon" aria-hidden="true">⇧</span><strong>Drop your workforce file here</strong><p>CSV, TSV, or Excel workbook · up to 8 MB · processed locally</p><span class="file-cta">Browse files</span><span class="file-name" id="fileName">No file selected</span><input type="file" id="file" accept=".csv,.tsv,.txt,.xlsx,text/csv,text/tab-separated-values,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" aria-label="Choose a CSV, TSV, or Excel workbook"></label>
+        <div class="field paste-panel"><label for="paste">Or paste spreadsheet rows</label><textarea id="paste" class="paste-input" rows="5" placeholder="Include the header row, then paste your tabular data"></textarea><div class="paste-actions"><small>First row is treated as column names.</small><button class="btn" id="pasteLoad" type="button">Load pasted table</button></div></div>
+        <div id="configure" hidden>
+          <div class="section-head" style="margin-top:25px"><h3>Confirm analysis fields</h3><span id="fileMeta"></span></div>
+          <div class="prep">
+            <div class="field"><label for="outcome">Outcome column</label><select id="outcome"></select><small>Choose a categorical column showing whether a person left.</small></div>
+            <div class="field"><label for="departedValue">Value meaning departed</label><select id="departedValue"></select><small>Only this outcome is counted as a departure.</small></div>
+            <div class="field" style="grid-column:1/-1"><label for="groupSetup">Group breakdown</label><select id="groupSetup"></select><small>Identifier fields and high-cardinality columns are unavailable. Groups under five records are hidden.</small></div>
+          </div>
+          <div class="data-actions"><button class="btn primary" id="analyze" type="button">Analyze aggregate patterns</button><span class="status" id="setupStatus" aria-live="polite"></span></div>
+          <section class="editor-panel" aria-labelledby="editorTitle">
+            <div class="section-head"><div><h3 id="editorTitle">Data preview &amp; manual editor</h3><span id="editorCount"></span></div><div class="editor-actions"><input id="newColumn" class="text-input" maxlength="80" placeholder="New column name"><button class="btn" id="addColumn" type="button">＋ Column</button><button class="btn" id="addRow" type="button">＋ Row</button></div></div>
+            <p class="muted">Edit the first 50 rows here or paste a larger table above. Changes remain in this tab only.</p>
+            <div class="editor-pagination"><button class="btn" id="editorPrev" type="button" aria-label="Previous editor page">← Previous</button><span id="editorPageText">Page 1 of 1</span><button class="btn" id="editorNext" type="button" aria-label="Next editor page">Next →</button></div>
+            <div class="table-wrap editor-wrap"><table id="editor"></table></div>
+          </section>
+        </div>
+        <div class="data-actions"><button class="btn" id="clear" type="button" hidden>Clear data from this session</button></div>
+      </section>
+
+      <section class="view view-shell" id="view-explore" hidden aria-label="Exploratory analysis">
+        <div class="view-title"><div><h2>Exploratory analysis</h2><p>Compare historical outcomes across categories or numeric bands. These are descriptive group patterns, not causes or forecasts.</p></div></div>
+        <div class="panel explore-controls"><div class="field"><label for="exploreFactor">Factor</label><select id="exploreFactor"></select></div><div class="field"><label for="exploreMode">Analysis type</label><select id="exploreMode"><option value="category">Categories</option><option value="quantile">Numeric bands</option></select></div><div class="field"><label for="exploreSecondary">Compare within</label><select id="exploreSecondary"><option value="">No second factor</option></select></div><button class="btn primary" id="runExplore" type="button">Run comparison</button><span id="exploreStatus" class="status" aria-live="polite"></span></div>
+        <div class="metrics compact-metrics"><div class="metric"><label>Records in comparison</label><strong id="exploreRecords">—</strong></div><div class="metric"><label>Groups shown</label><strong id="exploreGroupsCount">—</strong></div><div class="metric"><label>Groups suppressed</label><strong id="exploreSuppressed">—</strong></div></div>
+        <section class="breakdown"><div class="breakdown-head"><div class="section-head"><div><h2 id="exploreHeading">Group comparison</h2><span id="exploreCaption">Run a comparison to populate this view.</span></div></div></div><div class="table-wrap"><table><thead><tr><th>Group</th><th>Records</th><th>Departures</th><th>Historical rate</th><th>95% interval</th></tr></thead><tbody id="exploreTable"></tbody></table></div><div class="table-foot" id="exploreFoot"></div></section>
+        <section class="breakdown" id="crossBreakdown" hidden><div class="breakdown-head"><div class="section-head"><div><h2 id="crossHeading">Two-factor comparison</h2><span>Cross-cells below five records are suppressed.</span></div></div></div><div class="table-wrap"><table><thead><tr><th id="crossPrimaryHeading">Group</th><th id="crossSecondaryHeading">Within</th><th>Records</th><th>Departures</th><th>Historical rate</th><th>95% interval</th></tr></thead><tbody id="crossTable"></tbody></table></div><div class="table-foot" id="crossFoot"></div></section>
+        <div class="panel"><h3>Interpretation</h3><p>Differences can reflect data coverage, workforce mix, timing, or other structural factors. A group comparison does not establish cause and should not be used to assess individuals.</p></div>
+      </section>
+
+      <section class="view view-shell" id="view-planner" hidden aria-label="Retention planning">
+        <div class="view-title"><div><h2>Retention program planner</h2><p>Model an organization-wide scenario using your own assumptions. This is arithmetic for planning, not a forecast or guarantee.</p></div></div>
+        <div class="planner-grid"><section class="panel planner-inputs"><h3>Scenario assumptions</h3><div class="field"><label for="plannerCurrency">Currency</label><select id="plannerCurrency" class="text-input"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AUD</option></select></div><div class="field"><label for="departureCost">Average cost per departure</label><input class="text-input" id="departureCost" type="number" min="0" step="100" placeholder="e.g. 18000"><small>Use your organization’s estimate; do not enter employee-specific costs.</small></div><div class="field"><label for="programBudget">Program budget</label><input class="text-input" id="programBudget" type="number" min="0" step="100" placeholder="e.g. 25000"></div><div class="field"><label for="assumedReduction">Assumed organization-wide departure reduction (%)</label><input class="text-input" id="assumedReduction" type="number" min="0" max="100" step="1" placeholder="e.g. 5"></div><button class="btn primary" id="calculateScenario" type="button">Calculate scenario</button><p class="muted">The reduction percentage is your assumption; historical data does not predict program impact.</p></section><section class="panel"><h3>Scenario result</h3><div id="scenarioResult" class="scenario-result"><p class="muted">Analyze data and enter all three assumptions to view an illustrative estimate.</p></div></section></div>
+        <div class="notice planner-note"><span class="notice-icon" aria-hidden="true">ⓘ</span><div><b>Use for program-level discussion</b>Estimates are sensitive to assumptions and historical rates. Validate budgets and effectiveness with finance and voluntary workforce feedback.</div></div>
+      </section>
+
+      <section class="view view-shell" id="view-report" hidden aria-label="Workforce summary report">
+        <div class="view-title"><div><h2>Workforce summary report</h2><p>A shareable account of aggregate historical patterns and data limitations.</p></div><button class="btn primary" id="reportDownload" type="button">↓ Download HTML report</button></div>
+        <article class="report-sheet" id="reportBody"><p class="muted">Analyze data to create a report.</p></article>
+      </section>
+
+      <section class="view view-shell" id="view-export" hidden aria-label="Export results">
+        <div class="view-title"><div><h2>Export results</h2><p>Download only aggregate totals, group summaries, and trend periods. No employee rows are included.</p></div></div>
+        <div class="export-options"><section class="panel"><h3>Aggregate summary</h3><p>Overall totals, the selected group breakdown, and visible time periods.</p><button class="btn primary" id="exportCsv" type="button">↓ Download aggregate CSV</button></section><section class="panel"><h3>Printable report</h3><p>Formatted summary with caveats and privacy suppression details.</p><button class="btn" id="exportHtml" type="button">↓ Download HTML report</button></section></div>
+        <p class="muted" id="exportStatus">Run an analysis to enable exports.</p>
+      </section>
+
+      <section class="view view-shell" id="view-settings" hidden aria-label="Settings">
+        <div class="view-title"><div><h2>Settings &amp; privacy</h2><p>Current processing and disclosure controls.</p></div></div>
+        <div class="settings-list"><div><span>Processing</span><b>Local browser + local Python service</b></div><div><span>Persistence</span><b>Off · data clears when this tab closes</b></div><div><span>Minimum displayed group size</span><b>5 records · fixed</b></div><div><span>Maximum upload size</span><b>15 MB · CSV / TSV / TXT / XLSX</b></div><div><span>Individual predictions</span><b>Not available</b></div></div>
+        <div class="panel settings-clear"><h3>Clear session data</h3><p>Remove the current dataset and aggregate results from this tab.</p><button class="btn" id="clearSettings" type="button">Clear data</button></div>
+      </section>
+
+      <section class="view view-shell" id="view-help" hidden aria-label="Help and guide">
+        <div class="view-title"><div><h2>Help &amp; guide</h2><p>Prepare workforce history for responsible group-level review.</p></div></div>
+        <div class="help-grid"><section class="panel"><h3>1 · Prepare a file</h3><p>Use one row per historical record, a header row, and a categorical outcome such as Attrition = Yes / No. CSV, TSV, and .xlsx files are supported.</p></section><section class="panel"><h3>2 · Check and analyze</h3><p>Confirm the outcome and departure value. Choose a categorical grouping or explore a numeric field in bands. Blank outcomes are excluded.</p></section><section class="panel"><h3>3 · Review patterns</h3><p>Groups and time periods under five records are withheld. Rates describe historical groups and do not establish why people left.</p></section><section class="panel"><h3>4 · Plan at organization level</h3><p>Use comparisons and scenario estimates to review policies and programs. Do not use these outputs to make decisions about individual employees.</p></section></div>
+        <div class="notice"><span class="notice-icon" aria-hidden="true">ⓘ</span><div><b>Limitations</b>This local prototype has no HRIS integration, access management, or retention policy. Use synthetic data for demonstrations; follow your organization’s approved controls for real workforce data.</div></div>
+      </section>
+      <footer class="privacy-footer"><span>AttritionIQ · local, aggregate workforce analysis</span><span>No persistence · no individual employee scoring · minimum visible group size: 5</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+    const $ = selector => document.querySelector(selector);
+    const MAX_UPLOAD_BYTES = 15_000_000;
+    const escapeHTML = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+    const identifierHeader = /\b(id|name|email|phone|address|ssn)\b|(?:employee|staff|person)[\s_-]?(?:id|number)/i;
+    let dataset = null;
+    let latest = null;
+    let toastTimer;
+    let editorPage = 0;
+    const EDITOR_PAGE_SIZE = 50;
+
+    function notify(message, error = false) {
+      const toast = $('#toast');
+      toast.textContent = message;
+      toast.classList.toggle('error', error);
+      toast.hidden = false;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toast.hidden = true; }, 5000);
+    }
+
+    const viewLabels = {overview: 'Dashboard', data: 'Data & setup', explore: 'Exploratory analysis', planner: 'Retention planner', report: 'Reports', export: 'Export results', settings: 'Settings', help: 'Help & guide'};
+    function showView(name) {
+      if (!viewLabels[name]) return;
+      if (['explore', 'planner', 'report', 'export'].includes(name) && !latest) {
+        name = 'data';
+        notify('Load and analyze data to open this view.', true);
+      }
+      document.querySelectorAll('[data-view]').forEach(button => button.classList.toggle('active', button.dataset.view === name));
+      document.querySelectorAll('.view').forEach(section => { section.hidden = section.id !== `view-${name}`; });
+      $('#crumb').textContent = viewLabels[name];
+      if (name === 'explore' && latest) renderExploreResult();
+      if (name === 'report') renderReport();
+      if (name === 'planner') calculateScenario();
+      if (name === 'export') $('#exportStatus').textContent = latest ? 'Aggregate CSV and HTML report are ready.' : 'Analyze data to enable exports.';
+    }
+    document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => showView(button.dataset.view)));
+    $('#dataTop').onclick = $('#emptyLoad').onclick = () => { showView('data'); $('#file').click(); };
+    $('#manualEntry').onclick = () => { showView('data'); $('#paste').focus(); $('#paste').scrollIntoView({behavior: 'smooth', block: 'center'}); };
+
+    function parseTable(text) {
+      const firstLine = text.split(/\r?\n/, 1)[0];
+      const delimiter = [',', '\t', ';'].sort((left, right) => firstLine.split(right).length - firstLine.split(left).length)[0];
+      const table = [];
+      let row = [], cell = '', quoted = false;
+      for (let index = 0; index < text.length; index++) {
+        const character = text[index];
+        if (quoted) {
+          if (character === '"' && text[index + 1] === '"') { cell += '"'; index++; }
+          else if (character === '"') quoted = false;
+          else cell += character;
+        } else if (character === '"') quoted = true;
+        else if (character === delimiter) { row.push(cell); cell = ''; }
+        else if (character === '\n' || character === '\r') {
+          if (character === '\r' && text[index + 1] === '\n') index++;
+          row.push(cell); table.push(row); row = []; cell = '';
+        } else cell += character;
+      }
+      if (quoted) throw new Error('A quoted cell is missing its closing quote.');
+      if (cell !== '' || row.length) { row.push(cell); table.push(row); }
+      return table;
+    }
+
+    function loadMatrix(matrix, name) {
+      if (!matrix || matrix.length < 2) throw new Error('Add a header row and at least one employee row.');
+      const headers = matrix[0].map(value => String(value ?? '').trim());
+      if (!headers.length || headers.some(value => !value)) throw new Error('Every column needs a header.');
+      if (new Set(headers.map(value => value.toLowerCase())).size !== headers.length) throw new Error('Column headers must be unique.');
+      const rows = matrix.slice(1).filter(row => row.some(value => String(value ?? '').trim() !== '')).map(row => Array.from({length: headers.length}, (_, index) => String(row[index] ?? '').trim()));
+      if (!rows.length) throw new Error('The table has no employee rows.');
+      if (rows.length > 100000 || headers.length > 200) throw new Error('Limit files to 100,000 rows and 200 columns.');
+      dataset = {headers, rows, name};
+      editorPage = 0;
+      latest = null;
+      $('#results').hidden = true;
+      $('#empty').hidden = false;
+      $('#export').hidden = true;
+      $('#configure').hidden = false;
+      $('#clear').hidden = false;
+      $('#fileMeta').textContent = `${rows.length.toLocaleString()} rows · ${headers.length} columns`;
+      $('#fileName').textContent = name === 'Pasted data' ? 'Spreadsheet table pasted' : name;
+      $('#setupStatus').textContent = '';
+      populateFields();
+      renderEditor();
+      showView('data');
+      notify(`${name} loaded for this session.`);
+    }
+
+    async function importFile(file) {
+      if (file.size > MAX_UPLOAD_BYTES) throw new Error('Files must be 15 MB or smaller.');
+      $('#fileName').textContent = file.name;
+      if (/\.xlsx$/i.test(file.name)) {
+        const response = await fetch('/api/parse-xlsx', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'},
+          body: await file.arrayBuffer()
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'The Excel workbook could not be read.');
+        loadMatrix(result.matrix, file.name);
+        return;
+      }
+      if (!/\.(csv|tsv|txt)$/i.test(file.name)) throw new Error('Choose a CSV, TSV, TXT, or XLSX file.');
+      loadMatrix(parseTable(await file.text()), file.name);
+    }
+
+    function distinctValues(column) {
+      const index = dataset.headers.indexOf(column);
+      return [...new Set(dataset.rows.map(row => row[index]).filter(Boolean))];
+    }
+
+    function availableFactors() {
+      return dataset.headers.flatMap((header, index) => {
+        if (identifierHeader.test(header) || header === $('#outcome').value) return [];
+        const nonblank = dataset.rows.map(row => row[index]).filter(value => value !== '');
+        const unique = new Set(nonblank);
+        const numbers = nonblank.map(Number).filter(Number.isFinite);
+        const numeric = nonblank.length >= 10 && numbers.length / nonblank.length >= 0.9 && new Set(numbers).size >= 10;
+        if (numeric) return [{header, mode: 'quantile'}];
+        if (unique.size > 1 && unique.size <= 30 && unique.size / dataset.rows.length <= 0.5) return [{header, mode: 'category'}];
+        return [];
+      });
+    }
+
+    function refreshExploreSelectors(factors, preferredFactor = '') {
+      const mode = $('#exploreMode').value;
+      const choices = factors.filter(option => option.mode === mode);
+      $('#exploreFactor').innerHTML = choices.map(option => `<option value="${escapeHTML(option.header)}">${escapeHTML(option.header)}</option>`).join('');
+      if (choices.some(option => option.header === preferredFactor)) $('#exploreFactor').value = preferredFactor;
+      const primary = $('#exploreFactor').value;
+      const secondaryChoices = mode === 'category' ? factors.filter(option => option.mode === 'category' && option.header !== primary) : [];
+      const selectedSecondary = $('#exploreSecondary').value;
+      $('#exploreSecondary').innerHTML = '<option value="">No second factor</option>' + secondaryChoices.map(option => `<option value="${escapeHTML(option.header)}">${escapeHTML(option.header)}</option>`).join('');
+      $('#exploreSecondary').disabled = mode !== 'category';
+      if (secondaryChoices.some(option => option.header === selectedSecondary)) $('#exploreSecondary').value = selectedSecondary;
+    }
+
+    function populateFields() {
+      const selectedOutcome = $('#outcome').value;
+      const potentialOutcomes = dataset.headers.filter(header => !identifierHeader.test(header) && distinctValues(header).length >= 2 && distinctValues(header).length <= 20);
+      $('#outcome').innerHTML = potentialOutcomes.map(header => `<option>${escapeHTML(header)}</option>`).join('');
+      const likelyOutcome = potentialOutcomes.find(header => /attrition|left|turnover|exit|separation|leaver/i.test(header));
+      if (potentialOutcomes.includes(selectedOutcome)) $('#outcome').value = selectedOutcome;
+      else if (likelyOutcome) $('#outcome').value = likelyOutcome;
+
+      const setupGroups = () => {
+        const outcome = $('#outcome').value;
+        const selectedSetup = $('#groupSetup').value;
+        const selectedDashboard = $('#groupBy').value;
+        const factorOptions = availableFactors();
+        const selectedFactor = factorOptions.find(option => option.header === selectedDashboard) || factorOptions.find(option => option.header === $('#exploreFactor').value) || factorOptions.find(option => option.header === 'Department') || factorOptions[0];
+        $('#exploreMode').value = selectedFactor?.mode || 'category';
+        refreshExploreSelectors(factorOptions, selectedFactor?.header || '');
+        $('#exploreMode').onchange = () => refreshExploreSelectors(availableFactors());
+        $('#exploreFactor').onchange = () => refreshExploreSelectors(availableFactors(), $('#exploreFactor').value);
+        const groupOptions = dataset.headers.filter(header => {
+          if (header === outcome || identifierHeader.test(header)) return false;
+          const values = distinctValues(header);
+          return values.length > 1 && values.length <= 30 && values.length / dataset.rows.length <= 0.5;
+        });
+        const groupChoices = '<option value="">No group breakdown</option>' + groupOptions.map(header => `<option>${escapeHTML(header)}</option>`).join('');
+        const dashboardChoices = '<option value="">No group breakdown</option>' + factorOptions.map(option => `<option value="${escapeHTML(option.header)}" data-mode="${option.mode}">${escapeHTML(option.header)}${option.mode === 'quantile' ? ' · numeric bands' : ''}</option>`).join('');
+        $('#groupSetup').innerHTML = groupChoices;
+        $('#groupBy').innerHTML = dashboardChoices;
+        const department = groupOptions.find(header => /department|division|team/i.test(header));
+        $('#groupSetup').value = groupOptions.includes(selectedSetup) ? selectedSetup : department || '';
+        $('#groupBy').value = factorOptions.some(option => option.header === selectedDashboard) ? selectedDashboard : department || '';
+        updateDepartureValues();
+      };
+      $('#outcome').onchange = () => { invalidateAnalysis(); setupGroups(); };
+      setupGroups();
+    }
+
+    function renderEditor() {
+      if (!dataset) return;
+      const pageCount = Math.max(1, Math.ceil(dataset.rows.length / EDITOR_PAGE_SIZE));
+      editorPage = Math.min(editorPage, pageCount - 1);
+      const start = editorPage * EDITOR_PAGE_SIZE;
+      const end = Math.min(start + EDITOR_PAGE_SIZE, dataset.rows.length);
+      const visibleRows = dataset.rows.slice(start, end);
+      $('#editorCount').textContent = `Rows ${dataset.rows.length ? start + 1 : 0}–${end} of ${dataset.rows.length.toLocaleString()}`;
+      $('#editorPageText').textContent = `Page ${editorPage + 1} of ${pageCount}`;
+      $('#editorPrev').disabled = editorPage === 0;
+      $('#editorNext').disabled = editorPage + 1 >= pageCount;
+      $('#editor').innerHTML = `<thead><tr>${dataset.headers.map(header => `<th>${escapeHTML(header)}</th>`).join('')}</tr></thead><tbody>${visibleRows.map((row, localIndex) => { const rowIndex = start + localIndex; return `<tr>${dataset.headers.map((_, columnIndex) => `<td><input type="text" data-edit-row="${rowIndex}" data-edit-column="${columnIndex}" value="${escapeHTML(row[columnIndex])}" aria-label="Row ${rowIndex + 1}, ${escapeHTML(dataset.headers[columnIndex])}"></td>`).join('')}</tr>`; }).join('')}</tbody>`;
+    }
+
+    function invalidateAnalysis() {
+      latest = null;
+      $('#results').hidden = true;
+      $('#empty').hidden = false;
+      $('#export').hidden = true;
+    }
+
+    $('#editor').addEventListener('input', event => {
+      const input = event.target;
+      if (input.dataset.editRow === undefined) return;
+      dataset.rows[+input.dataset.editRow][+input.dataset.editColumn] = input.value;
+      invalidateAnalysis();
+    });
+    $('#editor').addEventListener('change', event => {
+      if (event.target.dataset.editRow !== undefined) populateFields();
+    });
+    $('#addRow').onclick = () => {
+      if (!dataset) return;
+      if (dataset.rows.length >= 100000) { notify('The 100,000-row limit has been reached.', true); return; }
+      const newIndex = dataset.rows.length;
+      dataset.rows.push(Array(dataset.headers.length).fill(''));
+      editorPage = Math.floor(newIndex / EDITOR_PAGE_SIZE);
+      invalidateAnalysis();
+      renderEditor();
+      $(`#editor input[data-edit-row="${newIndex}"]`)?.focus();
+    };
+    $('#editorPrev').onclick = () => { if (editorPage > 0) { editorPage--; renderEditor(); } };
+    $('#editorNext').onclick = () => { if (dataset && (editorPage + 1) * EDITOR_PAGE_SIZE < dataset.rows.length) { editorPage++; renderEditor(); } };
+    $('#addColumn').onclick = () => {
+      if (!dataset) return;
+      const name = $('#newColumn').value.trim();
+      if (!name) { notify('Enter a column name first.', true); return; }
+      if (dataset.headers.some(header => header.toLowerCase() === name.toLowerCase())) { notify('That column already exists.', true); return; }
+      if (dataset.headers.length >= 200) { notify('The 200-column limit has been reached.', true); return; }
+      dataset.headers.push(name);
+      dataset.rows.forEach(row => row.push(''));
+      invalidateAnalysis();
+      $('#newColumn').value = '';
+      populateFields();
+      renderEditor();
+    };
+
+    function updateDepartureValues() {
+      const outcome = $('#outcome').value;
+      const values = distinctValues(outcome);
+      $('#departedValue').innerHTML = values.map(value => `<option>${escapeHTML(value)}</option>`).join('');
+      const likely = values.find(value => /^(yes|y|true|1|left|leaver|resigned|terminated|exited)$/i.test(value));
+      if (likely) $('#departedValue').value = likely;
+      else if (values.length) {
+        const counts = new Map(values.map(value => [value, 0]));
+        const index = dataset.headers.indexOf(outcome);
+        dataset.rows.forEach(row => counts.set(row[index], counts.get(row[index]) + 1));
+        $('#departedValue').value = values.sort((left, right) => counts.get(left) - counts.get(right))[0];
+      }
+    }
+    $('#departedValue').addEventListener('change', invalidateAnalysis);
+    $('#groupSetup').addEventListener('change', invalidateAnalysis);
+
+    $('#file').addEventListener('change', async event => {
+      const file = event.target.files[0];
+      event.target.value = '';
+      if (!file) return;
+      try { await importFile(file); }
+      catch (error) { notify(error.message, true); }
+    });
+    $('#pasteLoad').onclick = () => {
+      try {
+        const text = $('#paste').value.trim();
+        if (new Blob([text]).size > MAX_UPLOAD_BYTES) throw new Error('Pasted data must be 8 MB or smaller.');
+        loadMatrix(parseTable(text), 'Pasted data');
+      }
+      catch (error) { notify(error.message, true); }
+    };
+    const drop = $('#drop');
+    ['dragenter', 'dragover'].forEach(type => drop.addEventListener(type, event => { event.preventDefault(); drop.classList.add('drag'); }));
+    ['dragleave', 'drop'].forEach(type => drop.addEventListener(type, event => { event.preventDefault(); drop.classList.remove('drag'); }));
+    drop.addEventListener('drop', async event => {
+      const file = event.dataTransfer.files[0];
+      if (!file) return;
+      try { await importFile(file); }
+      catch (error) { notify(error.message, true); }
+    });
+
+    async function analyze(targetView = 'overview', selectedGroup = $('#groupSetup').value, groupMode = 'category', secondaryGroup = null) {
+      if (!dataset) return;
+      const button = $('#analyze');
+      button.disabled = true;
+      $('#setupStatus').textContent = 'Calculating aggregate patterns…';
+      try {
+        const response = await fetch('/api/analyze', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({headers: dataset.headers, rows: dataset.rows, outcome: $('#outcome').value, departed_value: $('#departedValue').value, group_by: selectedGroup || null, group_mode: groupMode, secondary_group_by: secondaryGroup || null})
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Analysis could not be completed.');
+        latest = data;
+        renderResults();
+        showView(targetView);
+        $('#setupStatus').textContent = '';
+      } catch (error) {
+        $('#setupStatus').textContent = '';
+        notify(error.message || 'Start the local app with python server.py.', true);
+      } finally { button.disabled = false; }
+    }
+    $('#analyze').onclick = () => analyze();
+    $('#runExplore').onclick = () => {
+      if (!dataset) { showView('data'); return; }
+      const factor = $('#exploreFactor').value;
+      if (!factor) { notify('Choose an eligible factor to compare.', true); return; }
+      const mode = $('#exploreMode').value;
+      const secondary = $('#exploreSecondary').disabled ? null : $('#exploreSecondary').value || null;
+      analyze('explore', factor, mode, secondary);
+    };
+
+    function renderExploreResult() {
+      if (!latest) return;
+      const groups = latest.groups;
+      const isNumeric = latest.group_mode === 'quantile';
+      $('#exploreRecords').textContent = latest.records.toLocaleString();
+      $('#exploreGroupsCount').textContent = groups.length.toLocaleString();
+      $('#exploreSuppressed').textContent = latest.suppressed_groups.toLocaleString();
+      $('#exploreHeading').textContent = `${latest.group_by}${isNumeric ? ' · numeric bands' : ''}`;
+      $('#exploreCaption').textContent = `${latest.departures.toLocaleString()} departures · ${percent(latest.attrition_rate)} overall historical rate`;
+      $('#exploreTable').innerHTML = groups.length ? groups.map(group => `<tr><td>${escapeHTML(group.label)}</td><td>${group.records.toLocaleString()}</td><td>${group.departures.toLocaleString()}</td><td>${percent(group.attrition_rate)}</td><td>${formatInterval(group.confidence_interval)}</td></tr>`).join('') : '<tr><td colspan="5">No groups met the minimum size.</td></tr>';
+      const excluded = latest.excluded_group_rows || 0;
+      $('#exploreFoot').textContent = `${latest.suppressed_groups} group${latest.suppressed_groups === 1 ? '' : 's'} suppressed below n=${latest.min_group_size}; ${excluded} row${excluded === 1 ? '' : 's'} excluded from this factor comparison. Values are descriptive and are not predictions.`;
+      const crossGroups = latest.cross_groups || [];
+      $('#crossBreakdown').hidden = !latest.secondary_group_by;
+      if (latest.secondary_group_by) {
+        $('#crossPrimaryHeading').textContent = latest.group_by;
+        $('#crossSecondaryHeading').textContent = latest.secondary_group_by;
+        $('#crossHeading').textContent = `${latest.group_by} × ${latest.secondary_group_by}`;
+        $('#crossTable').innerHTML = crossGroups.length ? crossGroups.map(group => `<tr><td>${escapeHTML(group.primary)}</td><td>${escapeHTML(group.secondary)}</td><td>${group.records}</td><td>${group.departures}</td><td>${percent(group.attrition_rate)}</td><td>${formatInterval(group.confidence_interval)}</td></tr>`).join('') : '<tr><td colspan="6">No cross-cells met the minimum group size.</td></tr>';
+        $('#crossFoot').textContent = `${latest.suppressed_cross_groups} cross-cells suppressed below n=${latest.min_group_size}. Intervals describe sampling uncertainty; comparisons are not tests of cause or individual risk.`;
+      }
+      $('#exploreStatus').textContent = '';
+    }
+
+    function percent(value) { return `${(value * 100).toFixed(1)}%`; }
+    function formatInterval(interval) { return interval ? `${percent(interval[0])}–${percent(interval[1])}` : '—'; }
+    function renderResults() {
+      const result = latest;
+      if (!result) return;
+      $('#empty').hidden = true;
+      $('#results').hidden = false;
+      $('#export').hidden = false;
+      $('#records').textContent = result.records.toLocaleString();
+      $('#departures').textContent = result.departures.toLocaleString();
+      $('#rate').textContent = percent(result.attrition_rate);
+      const missing = result.missing_by_column.reduce((total, item) => total + item.missing, 0);
+      const cells = result.records * result.missing_by_column.length;
+      const completeness = cells ? 1 - missing / cells : 0;
+      $('#complete').textContent = percent(completeness);
+      $('#groupCount').textContent = result.groups.length.toLocaleString();
+      $('#groupCountHint').textContent = `${result.suppressed_groups} suppressed below n=${result.min_group_size}`;
+      $('#missingHint').textContent = `${missing.toLocaleString()} blank cells across ${result.missing_by_column.length} fields`;
+      $('#datasetName').textContent = `${dataset.name} · ${result.records.toLocaleString()} records`;
+      $('#groupHeading').textContent = result.group_by || 'Group';
+      const groups = [...result.groups].sort((left, right) => right.attrition_rate - left.attrition_rate);
+      renderAggregateVisuals(groups, result);
+      $('#groups').innerHTML = groups.length ? groups.map(group => `<tr><td>${escapeHTML(group.label)}</td><td>${group.records.toLocaleString()}</td><td>${group.departures.toLocaleString()}</td><td><div class="rate-cell"><span class="bar" aria-hidden="true"><i style="width:${Math.max(2, group.attrition_rate * 100)}%"></i></span><span class="rate">${percent(group.attrition_rate)}</span></div></td><td>${formatInterval(group.confidence_interval)}</td></tr>`).join('') : `<tr><td colspan="5">${result.group_by ? 'No groups meet the minimum size of five records.' : 'Choose a group column to compare historical rates.'}</td></tr>`;
+      $('#suppression').textContent = result.group_by
+        ? `${result.suppressed_groups ? `${result.suppressed_groups} group${result.suppressed_groups === 1 ? '' : 's'} hidden. ` : ''}Categories with fewer than ${result.min_group_size} records are suppressed; rates describe historical groups and are not predictions.`
+        : 'No group breakdown selected. Group rates are descriptive and are not predictions.';
+      renderPlanning(groups, result);
+      $('#quality').innerHTML = result.missing_by_column.slice().sort((left, right) => right.missing - left.missing).map(item => `<li><span>${escapeHTML(item.column)}</span><b>${item.missing.toLocaleString()} · ${percent(item.missing / result.records)}</b></li>`).join('');
+      const excludedRows = result.excluded_outcome_rows;
+      $('#analysisFoot').textContent = `Outcome: ${$('#outcome').value} = “${$('#departedValue').value}”. ${excludedRows.toLocaleString()} row${excludedRows === 1 ? '' : 's'} with blank outcomes excluded. Results are descriptive aggregates. No employee-level scores, rankings, or row-level results are produced.`;
+    }
+
+    function renderAggregateVisuals(groups, result) {
+      const overall = result.attrition_rate;
+      const peak = Math.max(overall, ...groups.map(group => group.attrition_rate), 0.01);
+      const trend = result.trend || [];
+      const trendPeak = Math.max(0.01, ...trend.map(period => period.attrition_rate));
+      $('#trendNote').textContent = trend.length
+        ? `${result.trend_column} · ${result.suppressed_periods} period${result.suppressed_periods === 1 ? '' : 's'} suppressed`
+        : 'No eligible year/date field';
+      $('#trendChart').innerHTML = trend.length ? trend.map(period => `<div class="trend-col" title="${period.period}: ${percent(period.attrition_rate)}, n=${period.records}"><b>${percent(period.attrition_rate)}</b><div class="trend-track"><i style="height:${Math.max(5, period.attrition_rate / trendPeak * 100)}%"></i></div><span>${escapeHTML(period.period)}</span></div>`).join('') : '<p class="muted">Add a Year, Date, Period, or Month column. Periods below five records are hidden.</p>';
+      $('#groupBars').innerHTML = groups.length ? groups.map(group => `<div class="rank-row" title="${escapeHTML(group.label)}: ${percent(group.attrition_rate)}, n=${group.records}"><span>${escapeHTML(group.label)}</span><div class="rank-track"><i style="width:${Math.max(2, group.attrition_rate / peak * 100)}%"></i></div><b>${percent(group.attrition_rate)}</b></div>`).join('') : '<p class="muted">No groups meet the visibility threshold.</p>';
+
+      const byDepartures = [...groups].sort((left, right) => right.departures - left.departures);
+      const visibleDepartures = byDepartures.reduce((total, group) => total + group.departures, 0);
+      $('#mixNote').textContent = `${visibleDepartures.toLocaleString()} in visible groups`;
+      $('#departureMix').innerHTML = byDepartures.length ? byDepartures.map(group => {
+        const share = visibleDepartures ? group.departures / visibleDepartures : 0;
+        return `<div class="mix-row"><span title="${escapeHTML(group.label)}">${escapeHTML(group.label)}</span><b>${group.departures.toLocaleString()} · ${percent(share)}</b><div class="mix-track"><i style="width:${Math.max(share ? 2 : 0, share * 100)}%"></i></div></div>`;
+      }).join('') : '<p class="muted">No visible group departures.</p>';
+
+      const ranked = [...groups].sort((left, right) => right.attrition_rate - left.attrition_rate);
+      const above = ranked.find(group => group.attrition_rate > overall);
+      const lowest = ranked.length ? [...ranked].sort((left, right) => left.attrition_rate - right.attrition_rate)[0] : null;
+      const messages = [];
+      if (above) messages.push(`Highest observed group rate: ${above.label}, ${percent(above.attrition_rate)} (n=${above.records}) versus ${percent(overall)} overall.`);
+      if (lowest && lowest !== above) messages.push(`Lowest observed group rate: ${lowest.label}, ${percent(lowest.attrition_rate)} (n=${lowest.records}).`);
+      messages.push(`${result.suppressed_groups} group${result.suppressed_groups === 1 ? '' : 's'} withheld because they fall below the minimum size.`);
+      $('#insights').innerHTML = messages.map(message => `<div class="insight"><i aria-hidden="true"></i><span>${escapeHTML(message)}</span></div>`).join('');
+    }
+
+    function renderPlanning(groups, result) {
+      const aboveOverall = groups.filter(group => group.attrition_rate > result.attrition_rate);
+      const highest = aboveOverall[0];
+      const items = highest
+        ? `<div class="planning"><b>Review group-level conditions</b><p>${escapeHTML(highest.label)} has a higher historical departure rate than the overall workforce. Review workload, role design, scheduling, and career pathways at a policy level; do not use this pattern to assess individuals.</p></div><div class="planning"><b>Validate before changing policy</b><p>Compare with voluntary feedback and other workforce measures. This pattern does not establish why departures occurred.</p></div>`
+        : `<div class="planning"><b>Use the overall pattern as a baseline</b><p>No visible group has a higher historical rate than the overall workforce. Review organization-wide retention conditions and continue monitoring over time.</p></div><div class="planning"><b>Keep comparisons contextual</b><p>Group sizes, time periods, and data quality affect rates. Validate with voluntary feedback before changing policy.</p></div>`;
+      $('#planning').innerHTML = items;
+    }
+
+    function calculateScenario() {
+      const result = $('#scenarioResult');
+      if (!latest) {
+        result.innerHTML = '<p class="muted">Analyze data to use the scenario planner.</p>';
+        return;
+      }
+      const fields = [$('#departureCost').value, $('#programBudget').value, $('#assumedReduction').value];
+      if (fields.some(value => value === '')) {
+        result.innerHTML = '<p class="muted">Enter a cost, a budget, and an assumed organization-wide reduction.</p>';
+        return;
+      }
+      const [cost, budget, reduction] = fields.map(Number);
+      if (![cost, budget, reduction].every(Number.isFinite) || cost < 0 || budget < 0 || reduction < 0 || reduction > 100) {
+        result.innerHTML = '<p class="muted">Use nonnegative amounts and a reduction between 0% and 100%.</p>';
+        return;
+      }
+      const currency = value => new Intl.NumberFormat(undefined, {style: 'currency', currency: $('#plannerCurrency').value, maximumFractionDigits: 0}).format(value);
+      const avoided = latest.departures * reduction / 100;
+      const gross = avoided * cost;
+      const net = gross - budget;
+      result.innerHTML = [
+        ['Historical departures', latest.departures.toLocaleString(), 'Baseline in the analyzed records'],
+        ['Assumed departures avoided', avoided.toFixed(1), `${reduction}% scenario assumption`],
+        ['Illustrative gross value', currency(gross), 'Assumed avoided departures × cost'],
+        ['Program budget', currency(budget), 'User-entered assumption'],
+        ['Illustrative net value', currency(net), budget ? `${(net / budget * 100).toFixed(1)}% scenario ROI` : 'Before program costs']
+      ].map(([label, value, note]) => `<div class="metric"><label>${escapeHTML(label)}</label><strong>${escapeHTML(value)}</strong><small>${escapeHTML(note)}</small></div>`).join('');
+    }
+    $('#calculateScenario').onclick = calculateScenario;
+    ['#departureCost', '#programBudget', '#assumedReduction', '#plannerCurrency'].forEach(selector => $(selector).addEventListener('input', calculateScenario));
+    $('#plannerCurrency').addEventListener('change', calculateScenario);
+
+    function csvCell(value) {
+      let text = String(value ?? '');
+      if (/^\s*[=+\-@]/.test(text)) text = `'${text}`;
+      return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    }
+    function downloadFile(filename, content, type) {
+      const url = URL.createObjectURL(new Blob([content], {type}));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    function aggregateCSV() {
+      if (!latest) return;
+      const rows = [
+        ['Section', 'Dimension', 'Group', 'Records', 'Departures', 'Historical rate', '95% Wilson interval'],
+        ['Overall', '', 'Workforce', latest.records, latest.departures, percent(latest.attrition_rate), formatInterval(latest.confidence_interval)],
+        ...latest.groups.map(group => ['Group', latest.group_by || '', group.label, group.records, group.departures, percent(group.attrition_rate), formatInterval(group.confidence_interval)]),
+        ...(latest.cross_groups || []).map(group => ['Cross group', `${latest.group_by} × ${latest.secondary_group_by}`, `${group.primary} / ${group.secondary}`, group.records, group.departures, percent(group.attrition_rate), formatInterval(group.confidence_interval)]),
+        ...latest.trend.map(period => ['Trend', latest.trend_column || '', period.period, period.records, period.departures, percent(period.attrition_rate), formatInterval(period.confidence_interval)])
+      ];
+      downloadFile('attritioniq_aggregate_summary.csv', '\ufeff' + rows.map(row => row.map(csvCell).join(',')).join('\r\n'), 'text/csv;charset=utf-8');
+      $('#exportStatus').textContent = 'Aggregate CSV generated. No employee rows are included.';
+    }
+    function reportHTML() {
+      if (!latest) return '';
+      const groupRows = latest.groups.map(group => `<tr><td>${escapeHTML(group.label)}</td><td>${group.records}</td><td>${group.departures}</td><td>${percent(group.attrition_rate)}</td><td>${formatInterval(group.confidence_interval)}</td></tr>`).join('') || '<tr><td colspan="5">No group met the minimum visibility threshold.</td></tr>';
+      const crossRows = (latest.cross_groups || []).map(group => `<tr><td>${escapeHTML(group.primary)}</td><td>${escapeHTML(group.secondary)}</td><td>${group.records}</td><td>${group.departures}</td><td>${percent(group.attrition_rate)}</td><td>${formatInterval(group.confidence_interval)}</td></tr>`).join('') || '<tr><td colspan="6">No eligible cross-cells.</td></tr>';
+      const trendRows = latest.trend.map(period => `<tr><td>${escapeHTML(period.period)}</td><td>${period.records}</td><td>${period.departures}</td><td>${percent(period.attrition_rate)}</td><td>${formatInterval(period.confidence_interval)}</td></tr>`).join('') || '<tr><td colspan="5">No eligible periods were available.</td></tr>';
+      const missingRows = latest.missing_by_column.map(item => `<li>${escapeHTML(item.column)}: ${item.missing} missing</li>`).join('');
+      return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>AttritionIQ aggregate report</title><style>body{font:15px/1.6 Arial,sans-serif;color:#172642;max-width:900px;margin:36px auto;padding:0 20px}h1,h2{color:#12234a}table{width:100%;border-collapse:collapse;margin:12px 0 24px}th,td{text-align:left;padding:9px;border-bottom:1px solid #dce3ee}th{background:#f0f4fb}.note{padding:12px;background:#eef4ff;border-left:4px solid #2368f6}.muted{color:#5b6880}</style><body><h1>Workforce attrition summary</h1><p class="muted">${escapeHTML(dataset.name)} · Generated ${escapeHTML(new Date().toLocaleString())}</p><p class="note">Aggregate planning only. Results describe historical groups, do not establish cause, and must not be used to make decisions about individuals.</p><h2>Overall</h2><p>${latest.records.toLocaleString()} records with known outcomes; ${latest.departures.toLocaleString()} departures; ${percent(latest.attrition_rate)} historical attrition; 95% Wilson interval ${formatInterval(latest.confidence_interval)}. ${latest.excluded_outcome_rows} rows with blank outcomes were excluded.</p><h2>Group comparison · ${escapeHTML(latest.group_by || 'No group selected')}</h2><table><thead><tr><th>Group</th><th>Records</th><th>Departures</th><th>Rate</th><th>95% interval</th></tr></thead><tbody>${groupRows}</tbody></table>${latest.secondary_group_by ? `<h2>${escapeHTML(latest.group_by)} × ${escapeHTML(latest.secondary_group_by)}</h2><table><thead><tr><th>${escapeHTML(latest.group_by)}</th><th>${escapeHTML(latest.secondary_group_by)}</th><th>Records</th><th>Departures</th><th>Rate</th><th>95% interval</th></tr></thead><tbody>${crossRows}</tbody></table><p>${latest.suppressed_cross_groups} cross-cells suppressed below n=${latest.min_group_size}.</p>` : ''}<h2>Trend · ${escapeHTML(latest.trend_column || 'No eligible date field')}</h2><table><thead><tr><th>Period</th><th>Records</th><th>Departures</th><th>Rate</th><th>95% interval</th></tr></thead><tbody>${trendRows}</tbody></table><p>${latest.suppressed_groups} groups and ${latest.suppressed_periods} periods suppressed below the minimum size of ${latest.min_group_size}.</p><h2>Data quality</h2><ul>${missingRows}</ul><p class="muted">Intervals describe sampling uncertainty, not causality. Local prototype; not a substitute for approved workforce governance.</p></body></html>`;
+    }
+    function renderReport() {
+      if (!latest) return;
+      const missing = latest.missing_by_column.reduce((total, item) => total + item.missing, 0);
+      $('#reportBody').innerHTML = `<p class="muted">${escapeHTML(dataset.name)} · Generated ${escapeHTML(new Date().toLocaleString())}</p><div class="report-kpis"><div class="metric"><label>Records analyzed</label><strong>${latest.records.toLocaleString()}</strong></div><div class="metric"><label>Departures</label><strong>${latest.departures.toLocaleString()}</strong></div><div class="metric"><label>Historical rate</label><strong>${percent(latest.attrition_rate)}</strong><small>95% CI ${formatInterval(latest.confidence_interval)}</small></div></div><h3>Group comparison · ${escapeHTML(latest.group_by || 'No group selected')}</h3><p>Descriptive historical rates. Groups below n=${latest.min_group_size} are withheld.</p><div class="table-wrap"><table><thead><tr><th>Group</th><th>Records</th><th>Departures</th><th>Rate</th><th>95% interval</th></tr></thead><tbody>${latest.groups.map(group => `<tr><td>${escapeHTML(group.label)}</td><td>${group.records}</td><td>${group.departures}</td><td>${percent(group.attrition_rate)}</td><td>${formatInterval(group.confidence_interval)}</td></tr>`).join('') || '<tr><td colspan="5">No eligible groups.</td></tr>'}</tbody></table></div><h3>Historical trend · ${escapeHTML(latest.trend_column || 'No eligible date field')}</h3><div class="table-wrap"><table><thead><tr><th>Period</th><th>Records</th><th>Departures</th><th>Rate</th><th>95% interval</th></tr></thead><tbody>${latest.trend.map(period => `<tr><td>${escapeHTML(period.period)}</td><td>${period.records}</td><td>${period.departures}</td><td>${percent(period.attrition_rate)}</td><td>${formatInterval(period.confidence_interval)}</td></tr>`).join('') || '<tr><td colspan="5">No eligible periods.</td></tr>'}</tbody></table></div>${latest.secondary_group_by ? `<h3>${escapeHTML(latest.group_by)} × ${escapeHTML(latest.secondary_group_by)}</h3><div class="table-wrap"><table><thead><tr><th>${escapeHTML(latest.group_by)}</th><th>${escapeHTML(latest.secondary_group_by)}</th><th>Records</th><th>Departures</th><th>Rate</th><th>95% interval</th></tr></thead><tbody>${(latest.cross_groups || []).map(group => `<tr><td>${escapeHTML(group.primary)}</td><td>${escapeHTML(group.secondary)}</td><td>${group.records}</td><td>${group.departures}</td><td>${percent(group.attrition_rate)}</td><td>${formatInterval(group.confidence_interval)}</td></tr>`).join('') || '<tr><td colspan="6">No eligible cross-cells.</td></tr>'}</tbody></table></div><p>${latest.suppressed_cross_groups} cross-cells withheld.</p>` : ''}<h3>Data quality &amp; limitations</h3><p>${missing.toLocaleString()} blank cells across ${latest.missing_by_column.length} fields; ${latest.excluded_outcome_rows} rows with blank outcomes excluded. ${latest.suppressed_groups} groups and ${latest.suppressed_periods} periods suppressed. Intervals describe sampling uncertainty; patterns are not causal or predictive, and are not for decisions about individuals.</p>`;
+    }
+
+    $('#export').onclick = $('#exportCsv').onclick = aggregateCSV;
+    $('#reportDownload').onclick = $('#exportHtml').onclick = () => latest && downloadFile('attritioniq_workforce_report.html', reportHTML(), 'text/html;charset=utf-8');
+
+    $('#groupBy').onchange = () => {
+      if (!dataset) return;
+      const selected = $('#groupBy').selectedOptions[0];
+      analyze('overview', $('#groupBy').value, selected?.dataset.mode || 'category');
+    };
+    function clearSession() {
+      dataset = null; latest = null; editorPage = 0;
+      $('#configure').hidden = true; $('#clear').hidden = true; $('#results').hidden = true; $('#empty').hidden = false; $('#export').hidden = true;
+      $('#fileMeta').textContent = ''; $('#paste').value = ''; $('#editor').innerHTML = ''; $('#fileName').textContent = 'No file selected';
+      showView('overview');
+      notify('Session data cleared.');
+    }
+    $('#clear').onclick = $('#clearSettings').onclick = clearSession;
+
+    $('#demo').onclick = () => {
+      const headers = ['Year', 'Department', 'Job family', 'MonthlyIncome', 'YearsAtCompany', 'Overtime', 'Tenure band', 'Gender', 'Attrition'];
+      const departments = ['Customer Support', 'Operations', 'Product', 'Sales'];
+      const leaveRates = [29, 18, 9, 24];
+      const rows = Array.from({length: 96}, (_, index) => {
+        const departmentIndex = Math.floor(index / 24);
+        const departed = (index * 37 + departmentIndex * 11) % 100 < leaveRates[departmentIndex];
+        const monthlyIncome = 2800 + (index * 137 + departmentIndex * 251) % 7200;
+        const yearsAtCompany = +((index * 7 % 110) / 10 + 0.5).toFixed(1);
+        return [2017 + index % 6, departments[departmentIndex], ['Client services', 'Engineering', 'Business operations'][index % 3], monthlyIncome, yearsAtCompany, index % 4 === 0 ? 'Yes' : 'No', ['Under 1 year', '1–3 years', '4+ years'][Math.floor(index / 8) % 3], index % 2 === 0 ? 'Female' : 'Male', departed ? 'Yes' : 'No'];
+      });
+      loadMatrix([headers, ...rows], 'Synthetic example');
+      $('#outcome').value = 'Attrition';
+      $('#outcome').dispatchEvent(new Event('change', {bubbles: true}));
+      $('#groupSetup').value = 'Department';
+      $('#groupBy').value = 'Department';
+      updateDepartureValues();
+      analyze();
+    };
+
+    fetch('/api/health').then(response => { if (!response.ok) throw new Error(); }).catch(() => notify('Start the local app with python server.py to analyze data.', true));
+  </script>
+</body>
+</html>
